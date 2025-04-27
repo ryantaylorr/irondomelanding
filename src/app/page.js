@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { New_Rocker } from "next/font/google";
 
 const newRocker = New_Rocker({
@@ -15,11 +15,21 @@ export default function Home() {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
+  // Ensure the body class changes based on the theme
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+      document.body.classList.remove("light");
+    } else {
+      document.body.classList.add("light");
+      document.body.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
   return (
     <main
       className={`
         min-h-screen flex flex-col justify-center items-center
-        ${isDarkMode ? "bg-gradient-to-br from-red-900 to-indigo-900" : "bg-gradient-to-br from-white to-green-300"}
         relative overflow-hidden transition-colors duration-300
         animate-gradientBackground
       `}
