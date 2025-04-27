@@ -41,10 +41,8 @@ export default function Home() {
           ${isDarkMode ? "text-white" : "text-black"}
           z-10
           mb-4
-          text-center
+          text-center md:text-center
           md:mb-0
-          md:mt-0 md:text-center md:mb-0
-          md:absolute md:top-8 md:left-1/2 md:transform md:-translate-x-1/2
         `}
       >
         I R O N D O M E
