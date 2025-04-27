@@ -1,9 +1,15 @@
 "use client";
 
 import { useState } from 'react';
+import { New_Rocker } from 'next/font/google';
+
+const newRocker = New_Rocker({
+  subsets: ['latin'],
+  weight: '400',
+});
 
 export default function Home() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // default to dark mode ✅
 
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -25,7 +31,6 @@ export default function Home() {
         animation: 'gradientAnimation 5s ease infinite',
         transition: 'background-color 0.3s ease',
         backgroundColor: isDarkMode ? '#2f546e' : '#f0f0f5',
-        overflow: 'hidden', // Prevent scrollbars from weird overflow
       }}
     >
       {/* Video Background */}
@@ -33,7 +38,6 @@ export default function Home() {
         autoPlay
         loop
         muted
-        playsInline
         style={{
           position: 'absolute',
           top: 0,
@@ -56,8 +60,7 @@ export default function Home() {
           left: '1rem',
           fontSize: '2rem',
           cursor: 'pointer',
-          zIndex: 2,
-          userSelect: 'none',
+          zIndex: 1,
         }}
       >
         {isDarkMode ? '🌙' : '☀️'}
@@ -65,38 +68,36 @@ export default function Home() {
 
       {/* Title */}
       <div
+        className={newRocker.className}
         style={{
-          fontSize: 'clamp(2rem, 8vw, 5rem)', // Responsive font size
-          fontFamily: 'Caudex, sans-serif',
-          fontWeight: '700',
+          fontSize: 'clamp(2rem, 8vw, 5rem)',
+          fontWeight: '400',
           color: isDarkMode ? '#fff' : '#000',
           zIndex: 1,
           textAlign: 'center',
-          padding: '0 1rem', // Small padding for mobile
+          padding: '0 1rem',
         }}
       >
         I R O N D O M E
       </div>
 
-      {/* Links (Top Right, Stacked) */}
+      {/* Links */}
       <div
         style={{
           position: 'absolute',
           top: '1rem',
-          right: '1rem',
+          right: '2rem',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '0.5rem',
-          fontSize: 'clamp(1rem, 5vw, 2rem)', // Responsive font size
+          fontSize: '38px',
           color: isDarkMode ? '#fff' : '#000',
           zIndex: 1,
           textAlign: 'right',
         }}
       >
-        <a href="https://plex.irondome.xyz" style={{ textDecoration: 'none' }}>P L E X</a>
-        <a href="https://homeassist.irondome.xyz" style={{ textDecoration: 'none' }}>H A</a>
-        <a href="https://overseer.irondome.xyz" style={{ textDecoration: 'none' }}>O V E R S E E R</a>
+        <a href="https://plex.irondome.xyz" style={{ marginBottom: '1rem' }}>P L E X</a>
+        <a href="https://homeassist.irondome.xyz" style={{ marginBottom: '1rem' }}>H A</a>
+        <a href="https://overseer.irondome.xyz">O V E R S E E R</a>
       </div>
     </main>
   );
