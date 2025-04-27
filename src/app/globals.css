@@ -4,7 +4,7 @@
 :root {
   --background-light: #ffffff; /* Light background */
   --foreground-light: #171717;
-  --background-gradient-light: linear-gradient(45deg, #ffffff, #53f195); /* White to light seafoam gradient */
+  --background-gradient-light: linear-gradient(45deg, #ffffff, #b0f3cc); /* White to light seafoam gradient */
 }
 
 /* Dark Mode Colors */
