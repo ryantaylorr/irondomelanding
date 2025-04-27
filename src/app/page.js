@@ -41,8 +41,10 @@ export default function Home() {
           ${isDarkMode ? "text-white" : "text-black"}
           z-10
           mb-4
-          text-center md:text-center
+          text-center
           md:mb-0
+          md:mt-0 md:text-center md:mb-0
+          md:absolute md:top-8 md:left-1/2 md:transform md:-translate-x-1/2
         `}
       >
         I R O N D O M E
@@ -61,9 +63,27 @@ export default function Home() {
           md:absolute md:top-8 md:right-8
         `}
       >
-        <a href="https://plex.irondome.xyz">P L E X</a>
-        <a href="https://homeassist.irondome.xyz">H A</a>
-        <a href="https://overseer.irondome.xyz">O V E R S E E R</a>
+        <a
+          href="https://plex.irondome.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          P L E X
+        </a>
+        <a
+          href="https://homeassist.irondome.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          H A
+        </a>
+        <a
+          href="https://overseer.irondome.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          O V E R S E E R
+        </a>
       </div>
     </main>
   );
