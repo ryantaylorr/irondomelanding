@@ -24,3 +24,25 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* globals.css */
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Applying the gradient animation with light blue and purple */
+body {
+  background: linear-gradient(45deg, #a0c4ff, #b28dff); /* Light blue to purple gradient */
+  background-size: 400% 400%; /* Larger background for animation */
+  animation: gradientAnimation 5s ease infinite; /* 5s for faster animation */
+}
+

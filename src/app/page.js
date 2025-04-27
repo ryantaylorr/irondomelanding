@@ -1,103 +1,96 @@
-import Image from "next/image";
+"use client"; // Add this line to indicate this is a client component
+
+import { useState } from 'react';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
+
+  return (
+    <main
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative', // Ensures the video stays in the background
+        backgroundImage: isDarkMode
+          ? 'linear-gradient(45deg, #8B0000, #2f1e5e)' // Dark red to dark purple/blue gradient for dark mode
+          : 'linear-gradient(45deg, #ffffff, #98FF98)', // White to seafoam green for light mode
+        backgroundSize: '400% 400%',
+        animation: 'gradientAnimation 5s ease infinite', // Animation for the gradient
+        transition: 'background-color 0.3s ease', // Smooth transition for background color
+        backgroundColor: isDarkMode ? '#2f546e' : '#f0f0f5', // Solid background color
+      }}
+    >
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover', // Ensures the video covers the entire screen
+          zIndex: -1, // Makes sure the video stays behind other elements
+        }}
+      >
+        <source src="/videos/background.mp4" type="video/mp4" />
+      </video>
+
+      {/* Toggle Button */}
+      <div
+        onClick={toggleTheme}
+        style={{
+          position: 'absolute',
+          top: '1rem',
+          left: '1rem',
+          fontSize: '2rem',
+          cursor: 'pointer',
+          zIndex: 1, // Make sure toggle is above the video
+        }}
+      >
+        {isDarkMode ? '🌙' : '☀️'}
+      </div>
+
+      {/* Title */}
+      <div
+        style={{
+          fontSize: '5rem',
+          fontFamily: 'Caudex, sans-serif',
+          fontWeight: '700',
+          color: isDarkMode ? '#fff' : '#000',
+          zIndex: 1, // Make sure title is above the video
+        }}
+      >
+        I R O N D O M E
+      </div>
+
+      {/* Links (Top Right, Stacked) */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '1rem',
+          right: '2rem', // Align links to the right edge
+          display: 'flex',
+          flexDirection: 'column', // Stack links vertically
+          fontSize: '38px', // Set font size to 38px
+          color: isDarkMode ? '#fff' : '#000', // White in dark mode, black in light mode
+          zIndex: 1, // Make sure links are above the video
+          textAlign: 'right', // Align text to the right
+        }}
+      >
+        <a href="https://plex.irondome.xyz" style={{ marginBottom: '1rem' }}>P L E X</a>
+        <a href="https://homeassist.irondome.xyz" style={{ marginBottom: '1rem' }}>H A</a>
+        <a href="https://overseer.irondome.xyz">O V E R S E E R</a>
+      </div>
+    </main>
   );
 }
