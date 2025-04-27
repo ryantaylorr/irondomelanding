@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from 'react';
-import { New_Rocker } from 'next/font/google';
+import { useState } from "react";
+import { New_Rocker } from "next/font/google";
 
 const newRocker = New_Rocker({
-  subsets: ['latin'],
-  weight: '400',
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export default function Home() {
-  const [isDarkMode, setIsDarkMode] = useState(true); // default to dark mode ✅
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
@@ -17,86 +17,52 @@ export default function Home() {
 
   return (
     <main
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-        backgroundImage: isDarkMode
-          ? 'linear-gradient(45deg, #8B0000, #2f1e5e)'
-          : 'linear-gradient(45deg, #ffffff, #98FF98)',
-        backgroundSize: '400% 400%',
-        animation: 'gradientAnimation 5s ease infinite',
-        transition: 'background-color 0.3s ease',
-        backgroundColor: isDarkMode ? '#2f546e' : '#f0f0f5',
-      }}
+      className={`
+        min-h-screen flex flex-col justify-center items-center
+        ${isDarkMode ? "bg-gradient-to-br from-red-900 to-indigo-900" : "bg-gradient-to-br from-white to-green-300"}
+        relative overflow-hidden transition-colors duration-300
+        animate-gradientBackground
+      `}
     >
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: -1,
-        }}
-      >
-        <source src="/videos/background.mp4" type="video/mp4" />
-      </video>
-
-      {/* Toggle Button */}
+      {/* Theme Toggle */}
       <div
         onClick={toggleTheme}
-        style={{
-          position: 'absolute',
-          top: '1rem',
-          left: '1rem',
-          fontSize: '2rem',
-          cursor: 'pointer',
-          zIndex: 1,
-        }}
+        className="absolute top-4 left-4 text-3xl cursor-pointer z-10"
       >
-        {isDarkMode ? '🌙' : '☀️'}
+        {isDarkMode ? "🌙" : "☀️"}
       </div>
 
       {/* Title */}
-      <div
-        className={newRocker.className}
-        style={{
-          fontSize: 'clamp(2rem, 8vw, 5rem)',
-          fontWeight: '400',
-          color: isDarkMode ? '#fff' : '#000',
-          zIndex: 1,
-          textAlign: 'center',
-          padding: '0 1rem',
-        }}
+      <h1
+        className={`
+          ${newRocker.className}
+          text-5xl md:text-7xl
+          font-normal
+          ${isDarkMode ? "text-white" : "text-black"}
+          z-10
+          mb-4
+          text-center md:text-center
+          md:mb-0
+        `}
       >
         I R O N D O M E
-      </div>
+      </h1>
 
       {/* Links */}
       <div
-        style={{
-          position: 'absolute',
-          top: '1rem',
-          right: '2rem',
-          display: 'flex',
-          flexDirection: 'column',
-          fontSize: '38px',
-          color: isDarkMode ? '#fff' : '#000',
-          zIndex: 1,
-          textAlign: 'right',
-        }}
+        className={`
+          flex flex-col 
+          ${isDarkMode ? "text-white" : "text-black"}
+          text-2xl md:text-4xl 
+          z-10
+          mt-4 sm:mt-12 md:mt-0 md:text-right
+          space-y-4
+          items-center md:items-end md:right-4
+          md:absolute md:top-8 md:right-8
+        `}
       >
-        <a href="https://plex.irondome.xyz" style={{ marginBottom: '1rem' }}>P L E X</a>
-        <a href="https://homeassist.irondome.xyz" style={{ marginBottom: '1rem' }}>H A</a>
+        <a href="https://plex.irondome.xyz">P L E X</a>
+        <a href="https://homeassist.irondome.xyz">H A</a>
         <a href="https://overseer.irondome.xyz">O V E R S E E R</a>
       </div>
     </main>
