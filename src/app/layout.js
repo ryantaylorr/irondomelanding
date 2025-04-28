@@ -8,7 +8,7 @@ const caudex = Caudex({
 
 export const metadata = {
   title: 'I R O N D O M E',
-  description: 'Your gateway to amazing services.',
+  description: 'E L Y S I U M. S E R V I C E S.',
 }
 
 export default function RootLayout({ children }) {

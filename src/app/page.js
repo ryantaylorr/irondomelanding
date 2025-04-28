@@ -33,6 +33,13 @@ export default function Home() {
         relative overflow-hidden transition-colors duration-300
         animate-gradientBackground
       `}
+      style={{
+        backgroundImage: `url('your-image-url.jpg')`, // Add the background image URL here
+        backgroundSize: 'contain',  // Make the background image smaller while maintaining aspect ratio
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',  // Prevents repeating the image
+        backgroundAttachment: 'fixed',
+      }}
     >
       {/* Theme Toggle */}
       <div
@@ -57,6 +64,25 @@ export default function Home() {
       >
         I R O N D O M E
       </h1>
+
+      {/* Subtitle - Now using h3 */}
+      <h3
+  className={`
+    ${newRocker.className}
+    text-2xl md:text-4xl
+    font-normal
+    ${isDarkMode ? "text-white" : "text-black"}
+    z-10
+    mb-4
+    text-center md:text-center
+    md:mb-0
+    tracking-wide  // Adds some spacing between the characters
+  `}
+>
+  E L Y S I U M&nbsp;&nbsp;&nbsp;&nbsp;S E R V I C E S.
+</h3>
+
+
 
       {/* Links */}
       <div
@@ -91,6 +117,20 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           O V E R S E E R
+        </a>
+        <a
+          href="https://vault.irondome.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+         V A U L T
+        </a>
+        <a
+          href="https://gitea.irondome.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+         G I T E A
         </a>
       </div>
     </main>
